@@ -31,16 +31,16 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 390px;
     position: relative;
     text-align: center;
     overflow: hidden;
 }
 .main-container h1{
     font-size: 60px;
-    position: relative;
     margin: 0;
     z-index: 1;
+    padding-top: 390px;
+    padding-bottom: 40px;
 }
 .chart-svg {
     height: 90px;
@@ -147,7 +147,6 @@ a:hover {
 
 .color-orange {
     background: #ffc171;
-    overflow: hidden;
 }
 
 .color-cyan {
@@ -241,6 +240,7 @@ button:hover {
         padding-top: 0px;
         top: 0;
         margin: auto;
+        padding-bottom: 0px;
     }
 
     svg {
@@ -261,7 +261,7 @@ button:hover {
         margin: 0px;
         width: 80%;
         position: relative;
-        bottom: 50px;
+        bottom: 260px;
         margin-bottom: 80px;
     }
 
