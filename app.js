@@ -12,7 +12,6 @@ fetch("https://hf3xzw.deta.dev/")
     console.log(body)
 
     for(let i = 0; i < 4; i++) {
-        sensorsSimple.push(JSONToSensor(body['sensors'][i]))
         const sensor = JSONToSensor(body['sensors'][i]) 
         cardContainer.innerHTML += 
         `
@@ -31,12 +30,6 @@ fetch("https://hf3xzw.deta.dev/")
         `
     }
 
-    historyValues = []
-    for(let i = 4; i < 8; i++) {
-        for(let j = 0; j < 10; j++)
-            historyValues[i][j] = JSONToSensor(body['sensors'][i])
-    }
-
     for(let i = 0; i < 2; i++) {
         document.getElementById('changeValue' + i).onclick = () => {
             if(document.getElementById("lightBulb" + i).src.match("light-on.svg"))
@@ -53,6 +46,12 @@ fetch("https://hf3xzw.deta.dev/")
             else 
             document.getElementById('changeValue' + i).innerHTML = 'Off'
         }
+    }
+
+    historyValues = []
+    for(let i = 4; i < 8; i++) {
+        for(let j = 0; j < 10; j++)
+            historyValues[i][j] = JSONToSensor(body['sensors'][i])
     }
 
     console.log(sensorsSimple[0].description)
