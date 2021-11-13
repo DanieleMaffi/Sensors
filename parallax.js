@@ -4,7 +4,6 @@ function parallax(e) {
         let movingValue = move.getAttribute("data-value")
         let x = e.clientX * movingValue/250
         let y = e.clientY * movingValue/250
-        console.log(x)
         move.style.transform = "translateX(" + x + "px) translateY(" + y + "px)"
     })
 }
