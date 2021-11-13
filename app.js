@@ -11,7 +11,6 @@ fetch("https://hf3xzw.deta.dev/")
 .then(body => {
     console.log(body)
 
-    const sensorsSimple = []
     for(let i = 0; i < 4; i++) {
         sensorsSimple.push(JSONToSensor(body['sensors'][i]))
         const sensor = JSONToSensor(body['sensors'][i]) 
@@ -31,9 +30,11 @@ fetch("https://hf3xzw.deta.dev/")
         </div>
         `
     }
-    const sensorsComplex = []
+
+    historyValues = []
     for(let i = 4; i < 8; i++) {
-        sensorsComplex.push(JSONToSensor(body['sensors'][i]))
+        for(let j = 0; j < 10; j++)
+            historyValues[i][j] = JSONToSensor(body['sensors'][i])
     }
 
     for(let i = 0; i < 2; i++) {

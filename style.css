@@ -20,6 +20,7 @@ body {
 a {
     color: #111111;
     text-decoration: none;
+    transition: 0.5s;
 }
 a:hover {
     transition: 0.5s;
@@ -55,8 +56,8 @@ a:hover {
     opacity: 80%;
 }
 #cakeChart {
-    left: 400px;
-    top: 70px;
+    left: 470px;
+    top: 100px;
     opacity: 70%;
 }
 #genericChart {
@@ -207,7 +208,7 @@ a:hover {
 }
 button:hover {
     color: rgba(255, 255, 255, 1);
-    box-shadow: 0 5px 15px #ffb554;
+    box-shadow: 0 5px 15px #ffb85b;
 }
 .card ul li {
     word-spacing: 30px;
@@ -257,6 +258,7 @@ button:hover {
     }
 
     .card {
+        display: relative;
         border-radius: 60px;
         margin: 0px;
         width: 80%;
