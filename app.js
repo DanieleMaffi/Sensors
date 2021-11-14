@@ -6,6 +6,15 @@ function setContent(id, content) {
     document.getElementById(id).innerHTML = content
 }
 
+function setVisible(domId, visible) {
+    let value = "none"
+
+    if(visible === true) 
+      value = "block"
+
+    document.getElementById(domId).style.display = value
+}
+
 fetch("https://hf3xzw.deta.dev/")
 .then(r => r.json())
 .then(body => {
@@ -45,11 +54,10 @@ fetch("https://hf3xzw.deta.dev/")
         }
     }
 
-    historyValues = []
-    for(let i = 4; i < 8; i++) {
-        for(let j = 0; j < 10; j++)
-            historyValues[i][j] = JSONToSensor(body['sensors'][i])
-    }
+    setTimeout(function(){
+        setVisible('loadingAnimation', false)
+        setVisible('content', true)
+    }, 3000);
 
     console.log(historyValues[4][1])
     console.log(historyValues[4][2])
