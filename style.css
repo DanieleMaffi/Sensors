@@ -211,7 +211,7 @@ a:hover {
 
 .card {
     background-color: rgb(255, 255, 255, 1);
-    border-radius: 65px;
+    border-radius: 50px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
