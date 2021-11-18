@@ -4,6 +4,16 @@
     scroll-behavior: smooth;
 }
 
+#fp-nav ul li a.active span {
+    background: transparent;
+    box-sizing: border-box;
+    border: 2px solid #212121;
+}
+
+#fp-nav ul li a.active:hover span {
+    background-color: #212121;
+}
+
 .hidden {
     display: none;
 }
@@ -13,7 +23,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(245, 245, 245);
 }
 
 .loading-animation {
@@ -78,6 +88,22 @@ a:hover {
     color: orange;
 }
 
+.border-gradient {
+    border: 3px solid;
+    border-image-slice: 1;
+    border-top: hidden;
+    border-right: hidden;
+    border-left: hidden;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: -47px;
+}
+
+.border-gradient-orange{
+    border-image-source: linear-gradient(to left,#292929 25%, #FFAA33 25% 75%, #EF8031 75% );
+}
+
 .main-container {
     display: flex;
     flex-direction: column;
@@ -90,8 +116,6 @@ a:hover {
     font-size: 60px;
     margin: 0;
     z-index: 1;
-    padding-top: 390px;
-    padding-bottom: 40px;
 }
 .chart-svg {
     height: 90px;
@@ -101,13 +125,13 @@ a:hover {
     color: #2ec4b6;
 }
 #candleChart {
-    right: 200px;
-    bottom: 250px;
+    right: 150px;
+    bottom: 270px;
     opacity: 80%;
 }
 #cakeChart {
-    left: 500px;
-    top: 100px;
+    left: 400px;
+    top: 90px;
     opacity: 55%;
 }
 #genericChart {
@@ -116,71 +140,14 @@ a:hover {
     opacity: 80%;
 }
 #cake2Chart {
-    right: 450px;
-    top: 150px;
+    right: 380px;
+    top: 180px;
     opacity: 70%;
 }
 #candle2Chart {
     left: 200px;
-    bottom: 350px;
+    bottom: 380px;
     opacity: 30%;
-}
-
-.header {
-    align-items: normal;
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-    display: flex;
-    padding: 1px;
-    margin: 0px;
-}
-
-.title {
-    font-size: 70px;
-}
-
-.logo-container {
-    width: 75%;
-}
-
-.logo {
-    height: 60px;
-    padding: auto;
-    padding-top: 6px;
-    padding-left: 6px;
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.list {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0px;
-}
-
-.list-element {
-    display: inline-block;
-    margin-right: 48px;
-    color: #000;
-    transition: .3s ease-in;
-}
-
-.border-gradient {
-    border: 10px solid;
-    border-image-slice: 1;
-    border-width: 3px;
-    border-top: hidden;
-    border-right: hidden;
-    border-left: hidden;
-}
-
-.border-gradient-orange{
-    border-image-source: linear-gradient(to left,#292929 25%, #FFAA33 25% 75%, #EF8031 75% );
 }
 
 .section-container {
@@ -192,7 +159,6 @@ a:hover {
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding-top: 200px;
     margin: auto;
 }
 
@@ -207,6 +173,9 @@ a:hover {
 .wave-svg {
     display: block;
     overflow: hidden;
+    position: absolute;
+    bottom: 0px;
+    z-index: -1;
 }
 
 .card {
@@ -229,7 +198,7 @@ a:hover {
 }
 .light-on {
     transform: translate(0,-10px);
-    fill: #93e1d8;
+    fill: #82d6cc;
     transition: 0.5s;
     filter: drop-shadow(0 0 10px #b3fffb);
 }
@@ -259,7 +228,6 @@ a:hover {
     color: #fff;
     cursor: pointer;
     font-weight: 500;
-    font-family: monospace;
     font-size: 15px;
     transition: all 0.2s ease-in-out;
 }
@@ -271,8 +239,18 @@ button:hover {
     word-spacing: 30px;
     margin: 10px;
     color: rgb(136, 136, 136);
-    font-family: monospace;
     font-size: 15px;
+}
+
+.chart-container {
+    margin: 35px auto;
+}
+
+.chart {
+    padding: 35px;
+    margin: 70px 0;
+    padding-top: 20px;
+    width:550px;
 }
 
 @media (max-width : 1200px) {
@@ -320,7 +298,7 @@ button:hover {
         margin: 0px;
         width: 80%;
         position: relative;
-        bottom: 260px;
+        bottom: 100px;
         margin-bottom: 80px;
     }
 
@@ -340,6 +318,21 @@ button:hover {
 
     .chart-svg {
         display: none;
+    }
+
+    
+    .chart-container {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .chart {
+        bottom: 0px;
+        padding: 35px;
+        margin: 0 auto;
+        margin-top: 80px;
+        width: 80%;
+        flex-direction: column;
     }
 }
 

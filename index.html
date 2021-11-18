@@ -9,10 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
-	<!-- UIkit JS -->
-	<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.6/dist/js/uikit.min.js"></script>
-
 	<link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.css'>
 </head>
 
 <body>
@@ -20,21 +18,10 @@
         <div class="loading-animation"></div>
     </div>
     <div id="content" style="display: none;">
-        <div class="header border-gradient border-gradient-orange">
-            <div class="logo-container">
-                <a href="index.html">
-                    <img class="logo animate__animated animate__headShake" src="https://static.vecteezy.com/system/resources/previews/000/361/818/original/pie-chart-vector-icon.jpg" alt="logo" class>
-                </a>
-            </div>
-            <div class="menu">
-                <ul class="animate__animated animate__backInRight list">
-                    <li class="list-element"><a href="#main">Main</a></li>
-                    <li class="list-element"><a href="#info">Info</a></li>
-                </ul>
-            </div>
-        </div>
+        <div class="border-gradient border-gradient-orange">empty</div>
         <main id="main">
-            <div class="main-container">
+        <div id="fullpage">
+            <section class="main-container section vertical-scrolling" id="mainSection">
                 <h1 class="moving-parallax" data-value="1">The charts you <span>need</span></h1>
                 <svg class="chart-svg moving-parallax" data-value="-5" version="1.1" id="cakeChart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	            viewBox="0 0 491.273 491.273" style="enable-background:new 0 0 491.273 491.273;" xml:space="preserve">
@@ -64,26 +51,49 @@
                 <svg class="wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="#FFBA89" fill-opacity="1" d="M0,288L40,272C80,256,160,224,240,218.7C320,213,400,235,480,256C560,277,640,299,720,288C800,277,880,235,960,224C1040,213,1120,235,1200,229.3C1280,224,1360,192,1400,176L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
                 </svg>
-            </div>
-            <div class="section-container color-orange" id="orangeContainer">
+            </section>
+            <section class="section-container color-orange section vertical-scrolling" id="orangeSection">
                 <div class="card-container" id="cardContainer">
 
                 </div>
-            </div>
-            <div class="section-container color-cyan">
+            </section>
+            <section class="section-container color-cyan vertical-scrolling" id="cyanSection">
                 <div class="card-container" id="cardChartContainer">
-
+                    <div class="chart-container">
+                        <div class="card chart">
+                            <h1>Titolo</h1>
+                            <canvas id="myChart1"></canvas>
+                        </div>
+                        <div class="card chart">
+                            <h1>Titolo</h1>
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="card chart">
+                            <h1>Titolo</h1>
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                        <div class="card chart">
+                            <h1>Titolo</h1>
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+        </div>    
         </main>
         <footer id="info">
 
         </footer>
         <div id="debug"></div>
-        <script src="sensor.js"></script>
-        <script src="app.js"></script>
-        <script src="parallax.js"></script>
-    </div>  
+    </div>   
+    <script src="sensor.js"></script>
+    <script src="app.js"></script>
+    <script src="parallax.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js'></script>
+    <script src="scrolling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
-
 </html>
