@@ -1,5 +1,6 @@
 document.addEventListener("mousemove", parallax)
 function parallax(e) {
+    // It moves every svg according to its data value
     document.querySelectorAll(".moving-parallax").forEach(move => {
         let movingValue = move.getAttribute("data-value")
         let x = e.clientX * movingValue/250

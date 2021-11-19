@@ -49,7 +49,6 @@ fetch("https://hf3xzw.deta.dev/")
     for(let i = 0; i < 2; i++) {
         document.getElementById('changeValue' + i).onclick = () => {
             document.getElementById("lightBulb" + i).classList.toggle('light-on')
-            
         }
     }
     // Does the same as the previous section, but to the last two cards
@@ -146,7 +145,7 @@ fetch("https://hf3xzw.deta.dev/")
         </ul>
         `
     }
-
+    
     // setTimeout(function(){
     //     setVisible('loadingAnimation', false)
     //     setVisible('content', true)
