@@ -3,10 +3,12 @@ const container = document.getElementById("container")
 const cardContainer = document.getElementById("cardContainer")
 const cardChartContainer = document.getElementById("cardChartContainer")
 
+// Function used to set the innerHTML of an element
 function setContent(id, content) {
     document.getElementById(id).innerHTML = content
 }
 
+// Function to change the display of an element from 'block' to 'none' or viceversa
 function setVisible(domId, visible) {
     let value = "none"
 
@@ -21,6 +23,7 @@ fetch("https://hf3xzw.deta.dev/")
 .then(body => {
     console.log(body)
 
+    // First four cards to display
     for(let i = 0; i < 4; i++) {
         const sensor = JSONToSensor(body['sensors'][i]) 
 
@@ -40,12 +43,16 @@ fetch("https://hf3xzw.deta.dev/")
         `
     }
 
+    // Used for checking whether the buttton to switch the like is pressed or not
+    // If it's pressed, it chamges the state of the light
+    // This os esclisovely for the first two cards
     for(let i = 0; i < 2; i++) {
         document.getElementById('changeValue' + i).onclick = () => {
             document.getElementById("lightBulb" + i).classList.toggle('light-on')
             
         }
     }
+    // Does the same as the previous section, but to the last two cards
     for(let i = 2; i < 4; i++) {
         document.getElementById("lightBulb" + i).classList.add('hidden')
         document.getElementById('changeValue' + i).onclick = () => {
@@ -56,152 +63,92 @@ fetch("https://hf3xzw.deta.dev/")
         }
     }
 
-    const ctx1 = document.getElementById('myChart1').getContext('2d')
-    const myChart1 = new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    })
-    
-    const ctx2 = document.getElementById('myChart2').getContext('2d')
-    const myChart2 = new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    })
+    // Does a fetch ten times for each of the remaining four sensors and stores them as historycal values yo show the on the charts
+    // It also updates the titles and additional informations for the sensor
+    let fetchCount = 0
+    for(let i = 4; i < 8; i++) {
+        const sensor = JSONToSensor(body['sensors'][i])
+        const values = []
+        for(let j = 0; j < 10; j++) {
+            fetch("https://hf3xzw.deta.dev/")
+                .then(r => r.json())
+                .then(body => {
+                    const sensorTemp = JSONToSensor(body['sensors'][i])
+                    values.push(sensorTemp.value)
+                    fetchCount++
+                    console.log(fetchCount)
 
-    const ctx3 = document.getElementById('myChart3').getContext('2d')
-    const myChart3 = new Chart(ctx3, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+                    // As soon as the fetch count reaches 40, the loading animation is hidden and the content is shown
+                    if(fetchCount == 40) {
+                        setVisible('loadingAnimation', false)
+                        setVisible('content', true)
+                    }
+                })
+        }
+
+        chartName = i - 3
+        console.log(values)
+        const ctx = document.getElementById('myChart' + chartName).getContext('2d')
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                datasets: [{
+                    label: 'Value',
+                    data: values,
+                    backgroundColor: [
+                        'rgba(117, 123, 200, 1)',
+                        'rgba(129, 135, 220, 1)',
+                        'rgba(142, 148, 242, 1)',
+                        'rgba(159, 160, 255, 1)',
+                        'rgba(173, 167, 255, 1)',
+                        'rgba(187, 173, 255, 1)',
+                        'rgba(203, 178, 254, 1)',
+                        'rgba(218, 182, 252, 1)',
+                        'rgba(221, 189, 252, 1)',
+                        'rgba(224, 195, 252, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(117, 123, 200, 1)',
+                        'rgba(129, 135, 220, 1)',
+                        'rgba(142, 148, 242, 1)',
+                        'rgba(159, 160, 255, 1)',
+                        'rgba(173, 167, 255, 1)',
+                        'rgba(187, 173, 255, 1)',
+                        'rgba(203, 178, 254, 1)',
+                        'rgba(218, 182, 252, 1)',
+                        'rgba(221, 189, 252, 1)',
+                        'rgba(224, 195, 252, 1)'
+                    ],
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                lineTension: 0.3,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                    }
                 }
             }
-        }
-    })
+        })      
+        
+        document.getElementById('chartDescription' + chartName).innerHTML = sensor.description
+        document.getElementById('chartList' + chartName).innerHTML += 
+        `
+        <ul>
+            <li>${sensor.id}</li>
+            <li>${sensor.lng}</li>
+            <li>${sensor.lat}</li>
+            <li>${sensor.place}</li>
+            <li>${sensor.state_code}</li>
+        </ul>
+        `
+    }
 
-    const ctx4 = document.getElementById('myChart4').getContext('2d')
-    const myChart4 = new Chart(ctx4, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    })
-
-    setTimeout(function(){
-        setVisible('loadingAnimation', false)
-        setVisible('content', true)
-    }, 200);
+    // setTimeout(function(){
+    //     setVisible('loadingAnimation', false)
+    //     setVisible('content', true)
+    // }, 8000);
 })

@@ -187,7 +187,7 @@ a:hover {
     flex: 3;
     margin: 20px;
     align-items: left;
-    box-shadow: 0px 5px 10px #000000;
+    box-shadow: 0px 5px 7px #1f1f1f;
 }
 
 .card svg {
@@ -238,19 +238,31 @@ button:hover {
 .card ul li {
     word-spacing: 30px;
     margin: 10px;
-    color: rgb(136, 136, 136);
+    color: rgb(168, 168, 168);
     font-size: 15px;
 }
 
 .chart-container {
-    margin: 35px auto;
+    margin: auto;
 }
 
 .chart {
-    padding: 35px;
-    margin: 70px 0;
-    padding-top: 20px;
-    width:550px;
+    padding: 10px 40px 30px 30px;
+    width: 550px;
+    margin: 50px 0;
+}
+.chart h1 {
+    margin-bottom: 0;
+    padding: 0;
+    text-transform: capitalize;
+    color: #2ec4b6;
+}
+.chart ul {
+    padding: 0;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 7px;
 }
 
 @media (max-width : 1200px) {
@@ -339,5 +351,15 @@ button:hover {
 @media (max-width : 800px) {
     .card {
         flex-direction: column;
+    }
+
+    .chart h1 {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .chart ul {
+        flex-direction: column;
+        padding: 0;
     }
 }
