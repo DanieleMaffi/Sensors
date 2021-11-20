@@ -115,6 +115,7 @@ a:hover {
 .main-container h1{
     font-size: 60px;
     margin: 0;
+    padding-top: 400px;
     z-index: 1;
 }
 .chart-svg {
@@ -277,11 +278,6 @@ button:hover {
     .menu {
         display: none;
     }
-
-    .main-container {
-        height: 100vh;
-        padding-top: 0px;
-    }
     
     .main-container h1 {
         font-size: 40px;
@@ -293,6 +289,11 @@ button:hover {
 
     .section-container {
         height: 100%;
+    }
+
+    .main-container {
+        height: 100vh;
+        padding-top: 0px;
     }
 
     .card-container {
