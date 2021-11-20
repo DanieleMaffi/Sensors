@@ -162,6 +162,9 @@ a:hover {
     flex-direction: row;
     margin: auto;
 }
+.color-orange .card-container {
+    padding-top: 150px;
+}
 
 .color-orange {
     background: #FFBA89;
