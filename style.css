@@ -291,10 +291,6 @@ button:hover {
         padding-bottom: 0px;
     }
 
-    svg {
-        display: none;
-    }
-
     .section-container {
         height: 100%;
     }
@@ -361,5 +357,6 @@ button:hover {
     .chart ul {
         flex-direction: column;
         padding: 0;
+        line-height: 1px;
     }
 }
